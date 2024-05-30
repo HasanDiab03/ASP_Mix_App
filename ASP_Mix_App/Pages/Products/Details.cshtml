@@ -1,0 +1,27 @@
+﻿@page "{id}"
+@model ASP_Mix_App.Pages.Products.DetailsModel
+@{
+	ViewData["Title"] = "Details";
+}
+
+@if(Model.Product is null)
+{
+	<h1>Product not found!</h1>
+} else
+{
+	<h1>Details</h1>
+	<p>Name: @Model.Product.Name</p>
+	@if(!string.IsNullOrEmpty(Model.Product.PhotoUrl))
+	{
+		<p>Description: @Model.Product.Description</p>
+	}
+	<p>Price: @Model.Product.Price $</p>
+	@if(!string.IsNullOrEmpty(Model.Product.PhotoUrl))
+	{
+	   	<img src="@Model.Product.PhotoUrl" width="300" height="300" />
+	}
+	<p>Category: @Model.Product.Category.Name</p>
+	<a asp-page="./Edit" asp-route-id="@Model.Product.Id">Edit</a>
+	<a asp-page="./Delete" asp-route-id="@Model.Product.Id">Delete</a>
+	<a asp-page="./Index">Back to List</a>
+}

@@ -1,0 +1,55 @@
+﻿@page
+@model ASP_Mix_App.Pages.Categories.IndexModel
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<style>
+    .styled-button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 70px;
+        right: 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .styled-button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h1>Categories Page:</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model.Categories)
+        {
+            <tr>
+                <td>@category.Name</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@category.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@category.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@category.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<button class="styled-button">
+    <a style="text-decoration: none;color: white" asp-page="./Add">
+        Add New Category
+    </a>
+</button>

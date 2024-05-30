@@ -1,0 +1,14 @@
+﻿@page "{id}"
+@model ASP_Mix_App.Pages.Categories.DetailsModel
+@{
+	ViewData["Title"] = "Details";
+}
+
+@if(Model.Category is null)
+{
+	<h1>No Category Exists</h1>
+} 
+else
+{
+	<h1>This is The @Model.Category.Name Category</h1>	
+}

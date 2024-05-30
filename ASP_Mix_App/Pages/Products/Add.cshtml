@@ -1,0 +1,57 @@
+﻿@page
+@model ASP_Mix_App.Pages.Products.AddModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Create</h1>
+
+<h4>Product</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductViewModel.Name" class="control-label"></label>
+                <input asp-for="ProductViewModel.Name" name="Name" class="form-control" />
+                <span asp-validation-for="ProductViewModel.Name" data-valmsg-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductViewModel.Description" class="control-label"></label>
+                <input asp-for="ProductViewModel.Description" name="Description" class="form-control" />
+                <span asp-validation-for="ProductViewModel.Description" data-valmsg-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductViewModel.Price" class="control-label"></label>
+                <input asp-for="ProductViewModel.Price" name="Price" class="form-control" />
+                <span asp-validation-for="ProductViewModel.Price" data-valmsg-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductViewModel.Photo" class="control-label"></label>
+                <input asp-for="ProductViewModel.Photo" name="Photo" class="form-control" />
+                <span asp-validation-for="ProductViewModel.Photo" data-valmsg-for="Photo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductViewModel.CategoryId" class="control-label"></label>
+                <select asp-for="ProductViewModel.CategoryId" name="CategoryId" asp-items="Model.Categories">
+                    <option value="" disabled>Select A Category</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

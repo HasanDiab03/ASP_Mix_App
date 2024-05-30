@@ -1,0 +1,83 @@
+﻿@page
+@model ASP_Mix_App.Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<style>
+    .styled-button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        position: absolute;
+        bottom: 70px;
+        right: 15px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .styled-button:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+
+
+<h1>Products Page:</h1>
+
+<form method="get">
+    <div class="form-group">
+		<label asp-for="SearchModel.SearchTerm" class="control-label"></label>
+		<input asp-for="SearchModel.SearchTerm" class="form-control" />
+        <span asp-validation-for="SearchModel.SearchTerm" class="text-danger"></span>
+	</div>
+    <div class="form-group">
+        <label asp-for="SearchModel.Category" class="control-label"></label>
+        <select asp-for="SearchModel.Category" asp-items="Model.Categories">
+            <option value="" disabled selected>Choose Category</option>
+        </select>
+    </div>
+	<button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Photo</th>
+            <th>Category</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var product in Model.Products)
+        {
+            <tr>
+				<td>@product.Name</td>
+				<td>@product.Description</td>
+				<td>@product.Price $</td>
+                @if(!string.IsNullOrEmpty(product.PhotoUrl))
+                {
+				    <td><img src="@product.PhotoUrl" width="300" height="300" /></td>
+                }
+				<td>@product.Category.Name</td>
+                <td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@product.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@product.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+			</tr>
+        }
+    </tbody>
+</table>
+<button class="styled-button">
+    <a style="text-decoration: none;color: white"  asp-page="./Add">
+        Add New Product
+    </a>
+</button>

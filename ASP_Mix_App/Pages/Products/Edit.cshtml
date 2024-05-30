@@ -1,0 +1,51 @@
+﻿@page "{id}"
+@model ASP_Mix_App.Pages.Products.EditModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ProductBindingModel.Name" class="control-label"></label>
+                <input asp-for="ProductBindingModel.Name" class="form-control" />
+                <span asp-validation-for="ProductBindingModel.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductBindingModel.Description" class="control-label"></label>
+                <input asp-for="ProductBindingModel.Description" class="form-control" />
+                <span asp-validation-for="ProductBindingModel.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductBindingModel.Price" class="control-label"></label>
+                <input asp-for="ProductBindingModel.Price" class="form-control" />
+                <span asp-validation-for="ProductBindingModel.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductBindingModel.Photo" class="control-label"></label>
+                <input name="Photo" type="file" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductBindingModel.CategoryId" class="control-label"></label>
+                <select asp-for="ProductBindingModel.CategoryId" asp-items="Model.Categories">
+                    <option value="" disabled>Select A Category</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div> 
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

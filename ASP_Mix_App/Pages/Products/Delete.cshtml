@@ -1,0 +1,12 @@
+﻿@page "{id}"
+@model ASP_Mix_App.Pages.Products.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+}
+<h1>Deleting Product with id: @Model.Id </h1>
+
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Delete" class="btn btn-danger" /> |
+    <a asp-page="./Index">Back to List</a>
+</form>
